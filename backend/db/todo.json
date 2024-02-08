@@ -1,0 +1,26 @@
+[
+    {
+        "todo":"chiamare mamma",
+        "done":false        
+    },
+    {
+        "todo":"chiamare papà",
+        "done":false     
+        
+    },
+    {
+        "todo":"comprare il latte",
+        "done":false     
+        
+    },
+    {
+        "todo":"comprare pane",
+        "done":false     
+        
+    },
+    {
+        "todo":"comprare tovaglioli",
+        "done":false     
+        
+    }
+]
