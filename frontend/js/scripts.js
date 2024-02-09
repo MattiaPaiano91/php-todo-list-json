@@ -60,6 +60,7 @@ createApp({
           }
         )
         .then((res) => {
+          console.log(res)
          this.todo.splice( i , 1 )
         });
     },

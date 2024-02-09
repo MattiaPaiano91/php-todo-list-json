@@ -13,7 +13,11 @@ header{
     height: 100px;
     background-color: #0866FF;
     color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 ul{
     margin: 50px 0px !important;
 }
@@ -41,7 +45,10 @@ li:hover{
     border: 1px solid #0866FF;
     border-radius: 25px;
     padding: 20px;
+    box-shadow: 17px 21px 15px 16px rgba(0,0,0,0.1);
 }
 #app{
     height: 100vh;
 }
+
+

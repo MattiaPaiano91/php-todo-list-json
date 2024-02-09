@@ -28,6 +28,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <title>php-todo-list-json</title>
   </head>
 
@@ -39,17 +42,20 @@
           >
             <h1>TO DO LIST</h1>
           </header>
-          <div class="list-container ">
-            <ul class="p-0">
+          <div class="list-container">
+            <ul v-if="todo.length > 0" class="p-0">
               <li
                 @click="taskDone(i)"
-                :class="elem.done == true ? 'task-done': ''"
+                class="d-flex justify-content-between "
                 v-for="(elem,i) in todo"
                 :key="i"
               >
-                {{ i + 1 }}- {{ elem.todo }} <span class="ms-3 " @click="removeToDo(i)">x</span>
+                <span :class="elem.done == true ? 'task-done': ''">{{ i + 1 }} - {{ elem.todo }}</span><button class=" me-2  btn btn-outline-primary" @click="removeToDo(i)">x</button>
               </li>
             </ul>
+            <div v-else>
+                <h3>Non ci sono task. Bravo!</h3>
+            </div>
             <form action="http://localhost/php-todo-list-json/backend/create-todo.php" method="post" @submit="newTodo()">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
@@ -69,7 +75,7 @@
     </div>
   </body>
 
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="./js/scripts.js"></script>
 </html>
