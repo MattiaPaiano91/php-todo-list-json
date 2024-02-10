@@ -46,13 +46,15 @@ createApp({
         )
         .then((res) => {
           console.log(res)
-          if (res.data.code == 200) {
-            this.todo.push({
-            todo: this.newTodo,
-            done: false,
-          });
-          this.newTodo = "";
-        }
+          if (this.newTodo.length > 0) {
+            if (res.data.code == 200) {
+              this.todo.push({
+                todo: this.newTodo.trim(),
+                done: false,
+              });
+              this.newTodo = "";
+            }
+          }
         console.log(this.newTodo, "ho avviato new todo");
       });
     },
