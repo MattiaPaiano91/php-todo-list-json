@@ -20,12 +20,12 @@ createApp({
     taskDone(i) {
       this.todo[i].done = !this.todo[i].done;
     },
-    newTodo() {
+    addTask() {
       axios
         .post(
           "http://localhost/php-todo-list-json/backend/create-todo.php",
           {
-            todo: this.newTodo,
+            task: this.newTodo,
           },
           {
             headers: {
@@ -34,17 +34,16 @@ createApp({
           }
         )
         .then((res) => {
-          console.log(res);
-
-          if (res.data.code == 200) {
+          console.log(res)
+          if (res.data.code === 200) {
             this.todo.push({
-              todo: this.newTodo,
-              done: false,
-            });
-
-            this.newTodo = "";
-          }
-        });
+            todo: this.newTodo,
+            done: false,
+          });
+          this.newTodo = "";
+        }
+        console.log(this.newTodo, "ho avviato new todo");
+      });
     },
     removeToDo(i) {
       axios
@@ -60,9 +59,11 @@ createApp({
           }
         )
         .then((res) => {
-          console.log(res)
          this.todo.splice( i , 1 )
         });
     },
   },
 }).mount("#app");
+            
+
+       

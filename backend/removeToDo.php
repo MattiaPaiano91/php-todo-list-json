@@ -1,5 +1,6 @@
 <?php
- 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 
 $todoFromDb = file_get_contents('db/todo.json');
 
@@ -13,4 +14,3 @@ $allTodoInJSON = json_encode($newAllTodo);
 
 file_put_contents('db/todo.json', $allTodoInJSON);
 
-header("location: ../frontend/index.html");

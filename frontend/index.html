@@ -56,20 +56,20 @@
             <div v-else>
                 <h3>Non ci sono task. Bravo!</h3>
             </div>
-            <form action="http://localhost/php-todo-list-json/backend/create-todo.php" method="post" @submit="newTodo()">
+            
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label"
-                  >Inserisci la task da aggiungere alla lista</label
+                <div 
+                  >Inserisci la task da aggiungere alla lista</div
                 >
                 <input
                   type="text"
                   class="form-control"
-                  name="todo"
                   v-model="newTodo"
+                  @keyup.enter="addTask"
                 />
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+              <button @click="addTask"  class="btn btn-primary">Submit</button>
+            
           </div>
      
     </div>
