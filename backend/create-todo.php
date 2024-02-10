@@ -7,11 +7,15 @@ $todoFromDb = file_get_contents('db/todo.json');
 
 $allTodo = json_decode($todoFromDb, true);
 
-$newTodo = [
-    'todo' => $_POST['task'],
-    'done' => false
-];
-$allTodo[] = $newTodo;
+if(strlen($_POST['task']) > 0){
+    $newTodo = [
+        'todo' => $_POST['task'],
+        'done' => false
+    ];
+
+
+    $allTodo[] = $newTodo;
+}
 
 $allTodoInJSON = json_encode($allTodo);
 
