@@ -12,13 +12,24 @@ createApp({
       .get("http://localhost/php-todo-list-json/backend/todo.php")
       .then((res) => {
         console.log(res);
-        this.todo = res.data;
+        this.todo = Array.isArray(res.data) ? res.data : [];
         console.log(this.todo);
       });
   },
   methods: {
     taskDone(i) {
       this.todo[i].done = !this.todo[i].done;
+      axios.post(
+        "http://localhost/php-todo-list-json/backend/switchStatus.php",
+        {
+          index: i,
+        },
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        }
+      );
     },
     addTask() {
       axios
@@ -35,7 +46,7 @@ createApp({
         )
         .then((res) => {
           console.log(res)
-          if (res.data.code === 200) {
+          if (res.data.code == 200) {
             this.todo.push({
             todo: this.newTodo,
             done: false,
