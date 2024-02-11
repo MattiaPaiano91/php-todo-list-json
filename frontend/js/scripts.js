@@ -5,6 +5,8 @@ createApp({
     return {
       todo: [],
       newTodo: "",
+      editTodo: "",
+      editedItemIndex: null,
     };
   },
   mounted() {
@@ -45,7 +47,7 @@ createApp({
           }
         )
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (this.newTodo.length > 0) {
             if (res.data.code == 200) {
               this.todo.push({
@@ -55,8 +57,8 @@ createApp({
               this.newTodo = "";
             }
           }
-        console.log(this.newTodo, "ho avviato new todo");
-      });
+          console.log(this.newTodo, "ho avviato new todo");
+        });
     },
     removeToDo(i) {
       axios
@@ -72,9 +74,48 @@ createApp({
           }
         )
         .then((res) => {
-         this.todo.splice( i , 1 )
+          this.todo.splice(i, 1);
         });
     },
+
+    startEdit(index) {
+      if (this.editedItemIndex === index) {
+        this.editedItemIndex = null;
+      } else {
+        this.editedItemIndex = index;
+         //this.editTodo = this.todo[index].todo;
+      }
+    },
+    editTask(i){
+      axios.post(
+        "http://localhost/php-todo-list-json/backend/editTodo.php",
+        {
+          index: i,
+          task: this.editTodo,
+        },
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        }
+      ).then((res) => {
+          console.log(res);
+          if (this.editTodo.length > 0) {
+            if (res.data.code == 200) {
+             let finalEditedTask = {
+              todo : this.editTodo,
+              done : false
+             }
+             this.todo.splice(i,1,finalEditedTask)
+
+            }
+          }
+          
+          this.editedItemIndex = null;
+          
+          this.editTodo = "";
+        });
+    }
   },
 }).mount("#app");
             

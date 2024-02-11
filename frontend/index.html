@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/images" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -40,37 +41,62 @@
           <header
             class="text-center"
           >
-            <h1>TO DO LIST</h1>
+            <div class="img-box">
+              <img src="../img/1f86398b6b66f39b2d85ac5cc75387f5.jpg" alt="">
+            </div>
           </header>
           <div class="list-container">
             <ul v-if="todo.length > 0" class="p-0">
               <li
-                @click="taskDone(i)"
-                class="d-flex justify-content-between "
+                
+                class="d-flex align-items-center justify-content-between  "
                 v-for="(elem,i) in todo"
                 :key="i"
               >
-                <span :class="elem.done == true ? 'task-done': ''">{{ i + 1 }} - {{ elem.todo }}</span><button class=" me-2  btn btn-outline-primary" @click="removeToDo(i)">x</button>
+                <span v-if="editedItemIndex !== i" @click="taskDone(i)" >{{ i + 1 }} - {{ elem.todo }}
+                </span>
+                <span v-else> 
+                  <input
+                    type="text"
+                    class="form-control d-inline-block ms-3 "
+                    v-model="editTodo"
+                    @keyup.enter="editTask(i)"
+                    :placeholder="elem.todo"
+                    :value="elem.todo"
+                  />
+                </span>
+                <div>
+                  <div @click="startEdit(i)" class="edit-button border-1 d-inline-block  ">Modifica</div>
+                  <span v-if="elem.done == true" class="me-3 check">
+                    done
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                  <span class="me-3 check" v-else>
+                    todo
+                    <i class="fa-solid fa-exclamation"></i>
+                  </span>
+                  <button class=" me-2  btn btn-outline-dark" @click="removeToDo(i)">x</button>
+                </div>
               </li>
             </ul>
             <div v-else>
                 <h3>Non ci sono task. Bravo!</h3>
             </div>
-            
-              <div class="mb-3">
-                <div 
-                  >Inserisci la task da aggiungere alla lista</div
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="newTodo"
-                  @keyup.enter="addTask"
-                />
+            <div class="mb-3">
+              <div 
+                >Inserisci la task da aggiungere alla lista
               </div>
-              <button @click="addTask"  class="btn btn-primary">Submit</button>
-            
+              <input
+                type="text"
+                class="form-control w-75  "
+                v-model="newTodo"
+                @keyup.enter="addTask"
+              />
+            </div>
+            <button @click="addTask"  class="btn btn-dark">Add</button>
           </div>
+            
+            
      
     </div>
   </body>
