@@ -23,9 +23,9 @@ L'applicazione consiste in un'interfaccia che visualizza una lista di Todo letti
 ## Struttura del progetto
 
 - `index.php`: File principale che contiene l'interfaccia utente e importa Vue.js e Axios
-- `app.js`: File JavaScript che contiene la logica dell'applicazione Vue.js
-- `api.php`: Script PHP che gestisce le operazioni CRUD (Create, Read, Update, Delete) sui dati dei Todo
+- `scripts.js`: File JavaScript che contiene la logica dell'applicazione Vue.js
 - `todo.json`: File JSON che contiene i dati dei Todo
+- Vari file php che ricevono e gestiscono le chimate api dal file js
 
 ## Funzionalità
 
