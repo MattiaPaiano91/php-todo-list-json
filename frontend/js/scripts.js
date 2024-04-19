@@ -4,8 +4,8 @@ createApp({
   data() {
     return {
       todo: [],
+      note: [],
       newTodo: "",
-      editTodo: "",
       editedItemIndex: null,
     };
   },
@@ -79,11 +79,10 @@ createApp({
     },
 
     startEdit(index) {
-      if (this.editedItemIndex === index) {
+      if (this.editedItemIndex == index) {
         this.editedItemIndex = null;
       } else {
         this.editedItemIndex = index;
-         //this.editTodo = this.todo[index].todo;
       }
     },
     editTask(i){
@@ -91,7 +90,8 @@ createApp({
         "http://localhost/php-todo-list-json/backend/editTodo.php",
         {
           index: i,
-          task: this.editTodo,
+          task: this.todo[i].todo
+          
         },
         {
           headers: {
